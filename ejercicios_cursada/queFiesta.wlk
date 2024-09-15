@@ -1,6 +1,6 @@
 object manic {
     var estrellas = 0
-    var globos = 55
+    const globos = 55
 
     method globos() = globos
 
@@ -22,14 +22,14 @@ object fiesta {
 }
 
 object chuy {
-    var globos = 100
+    const globos = 100
     method globos() = globos
     method tieneTodoListoParaLaFiesta() = true
 }
 
 object capy {
     var latas = 0
-    var globos = 50
+    const globos = 50
     method globos() = globos
 
     method recolectarLata() {
