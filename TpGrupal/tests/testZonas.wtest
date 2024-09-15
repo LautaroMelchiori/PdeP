@@ -1,0 +1,30 @@
+import src.zonas.*
+import src.habitantes.*
+
+describe "Pruebas Zonas y Caminosd" {
+
+  test "1. Gandalf full vida y con sus armas, puede atravesar Lebennin" {
+    assert.that(gandalf.puedeAtravesarLebennin())
+  }
+
+  test "2. Gandalf sin armas y con 11 de vida puede atravesar Lebennin" {
+    gandalf.setVida(11)
+    gandalf.setArmas(#{})
+    assert.notThat(gandalf.puedeAtravesarLebennin())
+  }
+
+  test "3. Gandalf sin armas y con 11 de vida puede atravesar Minas Tirith" {
+    gandalf.setVida(11)
+    gandalf.setArmas(#{})
+    assert.notThat(gandalf.puedeAtravesarMinasTirith())
+  }
+
+  test "4. Gandalf full vida y con sus armas, puede atravesar el camino compuesto por Lebennin y Minas Tirith" {
+    assert.that(gandalf.puedeAtravesarCaminoDeGondor())
+  }
+
+  test "5. Gandalf full vida y con sus armas, atraviesa el camino compuesto por Lebennin y Minas Tirith" {
+    caminoDeGondor.recorrer(gandalf)
+    assert.equals(gandalf.vida(), 90)
+  }
+}

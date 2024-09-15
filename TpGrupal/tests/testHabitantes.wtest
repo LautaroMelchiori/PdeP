@@ -1,0 +1,38 @@
+import src.habitantes.*
+import src.armas.*
+import src.zonas.*
+
+describe "Pruebas Gandalf" {
+
+  test "1. Poder de Gandalf con toda la vida y todas sus armas" {
+    assert.equals(2800, gandalf.poder())
+  }
+
+  test "2. Poder de Gandalf sin armas y con 80 de vida" {
+    gandalf.setVida(80)
+    gandalf.setArmas(#{})
+    assert.equals(1200, gandalf.poder())
+  }
+
+  test "3. Poder de Gandalf con 5 de vida y su báculo" {
+    gandalf.setVida(5)
+    gandalf.setArmas(#{baculo})
+    assert.equals(2300, gandalf.poder())
+  }
+
+  test "4. Poder de Gandalf con 30 de vida, su báculo y su espada pero versión enana" {
+    gandalf.setVida(30)
+    gandalf.setArmas(#{baculo, espadaEnana})
+    assert.equals(1650, gandalf.poder())
+  }
+}
+
+describe "Pruebas Tom Bombadil" {
+  test "1. Tom puede atravesar atravesar Lebennin" {
+    assert.that(tomBombadil.puedeAtravesarLebennin())
+  }
+
+  test "2. Tom atraviesa el camino que pasa por Gondor antes mencionado" {
+    assert.doesNotThrowException({caminoDeGondor.recorrer(tomBombadil)})
+  }
+}
