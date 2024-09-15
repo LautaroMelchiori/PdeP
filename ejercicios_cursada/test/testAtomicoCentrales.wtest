@@ -1,0 +1,44 @@
+import src.atomicoCiudades.*
+import src.atomicoCentrales.*
+
+describe "Pruebas Centrales Energeticas" {
+    test "burns con 10 varillas produce 1 Mkwh en springfield" {
+        burns.setVarillas(10)
+        assert.equals(burns.produccion(springfield), 1000000)
+    }
+
+    test "exBosque con una capacidad de 20 toneladas produce 18.5 Mkwh en springfield" {
+        exbosque.setCapacidad(20)
+        assert.equals(exbosque.produccion(springfield), 18.5 * 1000000)
+    }
+
+    test "elSuspiro produce 2 Mkwh en springfield" {
+        assert.equals(elSuspiro.produccion(springfield), 2 * 1000000)
+    }
+}
+
+describe "Pruebas Ciudades" {
+    test "Teniendo las centrales anteriores, las centrales contaminantes de Springfield es una colección que adentro tiene sólo a exBosque" {
+        assert.equals(springfield.centralesContaminantes(), #{exbosque})
+    }
+
+    test "Teniendo las centrales anteriores, springfield cubrió su necesidad energética si ésta era de 20 Mkwh" {
+        springfield.setNecesidadEnergetica(20 * 1000000)
+        burns.setVarillas(10)
+        exbosque.setCapacidad(20)
+        assert.that(springfield.cubreSusNecesidades())
+    }
+
+    test "Teniendo las centrales anteriores, springfield está al horno si posee una necesidad energética de 30 Mkwh" {
+        springfield.setNecesidadEnergetica(30 * 1000000)
+        burns.setVarillas(10)
+        exbosque.setCapacidad(20)
+        assert.that(springfield.estaAlHorno())
+    }
+
+    test "Teniendo las centrales anteriores de springfield, las centrales más productoras de la región donde ésta se encuentra es una colección con exBosque de springfield y la central hidroeléctrica de albuquerque" {
+        burns.setVarillas(10)
+        exbosque.setCapacidad(20)
+        assert.equals(region.centralesMasProductoras(), [exbosque, centralHidroelectrica])
+    }
+}
